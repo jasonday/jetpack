@@ -20,9 +20,11 @@ class Jetpack_Debugger {
 
 	private static function what_jetpack_plan() {
 		$plan = Jetpack::get_active_plan();
-		$plan = $plan['product_slug'];
+		$supports = empty( $plan['supports'] )
+			? 'no additional features'
+			: join( ', ', $plan['supports'] );
 
-		return 'JetpackPlan-' . $plan;
+		return $plan['product_slug'] . '; PLAN_SUPPORTS: ' . $supports;
 	}
 
 	static function seconds_to_time( $seconds ) {
